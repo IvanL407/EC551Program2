@@ -1,6 +1,0 @@
-# X is assigned three times -> shows SSA renaming
-X = A + B
-X = X * C
-Y = X - A
-X = Y + 3
-Z = X * Y
