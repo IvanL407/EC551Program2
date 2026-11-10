@@ -38,6 +38,9 @@ def main():
     try:
         eqs = parse_equations(open(a.input).read())
         ops, inputs, final = to_ssa(eqs)
+        clash = set(inputs) & {o.dest for o in ops}
+        if clash:
+            raise SyntaxError(f"input name(s) {sorted(clash)} collide with generated SSA names; rename them")
         dag = DAG(ops)
         limits = {'+': a.adders, '-': a.subtractors, '*': a.multipliers}
         sched = S.run(a.mode, dag, limits, a.latency)
@@ -58,6 +61,8 @@ def main():
     open(os.path.join(a.outdir, 'hls_core.v'), 'w').write(core)
     open(os.path.join(a.outdir, 'tb_hls_core.v'), 'w').write(
         V.emit_testbench(ops, inputs, sched, a.width, defaults))
+    open(os.path.join(a.outdir, 'testbench.v'), 'w').write(
+        V.emit_top_testbench(ops, inputs, sched, a.width, defaults, fu_of, fu_list))
     smap = V.switch_map(ops, inputs, fu_of, fu_list, sched)
     open(os.path.join(a.outdir, 'switch_map.txt'), 'w').write(smap)
     sched_txt = S.schedule_table(dag, sched)
@@ -69,7 +74,7 @@ def main():
     print(sched_txt)
     print("\ndemo defaults:", ", ".join(f"{k}={v}" for k, v in defaults.items()))
     print("\n" + smap)
-    print(f"wrote {a.outdir}/hls_core.v, tb_hls_core.v, switch_map.txt, schedule.txt")
+    print(f"wrote {a.outdir}/hls_core.v, tb_hls_core.v, testbench.v, switch_map.txt, schedule.txt")
 
 
 if __name__ == '__main__':
