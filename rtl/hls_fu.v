@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 // Basic functional unit blocks used by the generated datapath (hls_core.v).
 // All are purely combinational, W bits wide. The generated core registers their
 // outputs at the cycle boundaries, so each operation takes exactly one FSM state.
