@@ -1,7 +1,0 @@
-# SSA form
-# inputs: A, B
-X_1 = A + B
-Y_1 = X_1 + A
-Z_1 = X_1 - B
-Q_1 = B * Z_1
-# final values: X -> X_1, Y -> Y_1, Z -> Z_1, Q -> Q_1
