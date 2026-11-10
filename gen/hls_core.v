@@ -3,6 +3,7 @@
 //   cycle 1: X_1=A+B
 //   cycle 2: Y_1=X_1+A, Z_1=X_1-B
 //   cycle 3: Q_1=B*Z_1
+`timescale 1ns/1ps
 module hls_core #(parameter W = 16) (
     input  wire clk, rst,
     input  wire step,                 // one-cycle pulse: advance the FSM
