@@ -1,9 +1,0 @@
-# 6 independent adds/mults then a reduction tree -> good for resource limits
-P = A * B
-Q = C * D
-R = A + C
-S = B + D
-T = P + Q
-U = R * S
-V = U - T
-W = V + P
