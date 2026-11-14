@@ -112,14 +112,10 @@ switches, results shown in hex. Inputs that are not loaded keep their default va
 
 | Time | What |
 |---|---|
-| 0 - 3 min | Overview of the flow (parse, SSA, DAG, schedule, bind, Verilog) and the repo. |
-| 3 - 7 min | Software on `examples/reassign.txt`: show `--export-ssa` output (X renamed 3 times) and the DAG (`--export-dot`). |
-| 7 - 11 min | Scheduling on `examples/wide.txt`: run `asap`, `casap` with 1 adder and 1 multiplier, `alap --latency 6`, `calap`, and `custom --latency 5`. Compare cycle counts and units used. |
-| 11 - 14 min | Open `gen/hls_core.v`: point out the units, the input muxes, the registers and the FSM. Run `sim/run_sim.sh`, show PASS. |
-| 14 - 19 min | **Live run 1**: professor writes equations and picks a mode. Run `hls.py`, run the sim, start the bitstream build. While it builds, work out the expected answers by hand. Program the board, load inputs, step with BTNC, show each unit with SW[15:12] and each register with SW[11:8]. |
-| 19 - 24 min | **Live run 2**: new equations with resource limits (for example 1 multiplier). Show that the multiplier is shared across cycles through the muxes while stepping. |
-| 24 - 28 min | **Live run 3**: new equations, ALAP or custom mode, different input values loaded from the switches. |
-| 28 - 30 min | Questions. |
+| 0 - 10 min | Overview of the flow (parse, SSA, DAG, schedule, bind, Verilog) and the repo. |
+| 10 - 20 min | Verilog generation and test simulations. |
+| 20 - 30 min | FPGA setup demonstrations, Questions. |
+
 
 Notes for the live runs:
 
